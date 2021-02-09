@@ -1,28 +1,28 @@
 <div>
     <form>
-        <div>
-            <div>
-                <select id ="left-valute" onchange="convert(this)">
+        <div class="form-row">
+            <div class="form-group col-lg-5 col-md-12 m-4">
+                <select class="form-control" id ="left-valute" onchange="convert(this)">
                     {{#each Valute}}
                     <option value ="{{Value}}">{{Name}}</option>
                     {{/each}}
                 </select>
-                <input id="left-text" value="0" placeholder="100" oninput="convert(this)">
+                <input class="form-control" id="left-text" value="0" placeholder="100" oninput="convert(this)">
             </div>
 
-            <div>
-                <select id ="right-valute" onchange="convert(this)">
+            <div class="form-group col-lg-5 col-md-12 m-4">
+                <select class="form-control" id ="right-valute" onchange="convert(this)">
                     {{#each Valute}}
                     <option value ="{{Value}}">{{Name}}</option>
                     {{/each}}
                 </select>
-                <input id="right-text" value="0" placeholder="100" oninput="convert(this)">
+                <input class="form-control" id="right-text" value="0" placeholder="100" oninput="convert(this)">
             </div>
         </div>
     </form>
 </div>  
 <div>
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>#</th>
@@ -40,7 +40,7 @@
                 <td>{{CharCode}}</td>
                 <td>{{Value}}</td>
                 <td>{{DeValue}}</td>
-            </tr>>    
+            </tr>  
             {{/each}}
         </tbody>
         

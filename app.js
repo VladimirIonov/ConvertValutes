@@ -13,11 +13,15 @@ app.get("/", (request, response) => {
         let model = {
             Valute : {}
         };
+        let buffer = {
+            Valute: {}
+        }
+        let ob = {
+            Valute: {}
+        }
         if (error) console.log(error);
         else {
-            model = JSON.parse(data);
-
-            model.Valute["RUS"] = {
+            buffer.Valute["RUS"] = {
                 ID:"R0",
                 NumCode:"0",
                 CharCode: "RUS",
@@ -26,12 +30,17 @@ app.get("/", (request, response) => {
                 Value: 1,
                 Previos:1 
             };
+            ob = JSON.parse(data);
+            model.Valute = Object.assign(buffer.Valute,ob.Valute);
+            var per = 1;
+            
 
-            for (const key in model.Valute){
-               const element = model.Valute[key];
-               
-               element.Value = element.Value / element.Nominal;
-               element.DeValue = 1 / element.Value;
+            for(const key in model.Valute){
+               const element = model.Valute[key]; 
+               element.Value = Math.round((element.Value / element.Nominal)*1000)/1000;
+               element.DeValue = Math.round((1 / element.Value)*1000)/1000;
+               element.IdValute = per;
+               per=per+1;
             }
             
         }

@@ -1,0 +1,64 @@
+<div>
+    <form>
+        <div>
+            <div>
+                <select id ="left-valute" onchange="convert(this)">
+                    {{#each Valute}}
+                    <option value ="{{Value}}">{{Name}}</option>
+                    {{/each}}
+                </select>
+                <input id="left-text" value="0" placeholder="100" oninput="convert(this)">
+            </div>
+
+            <div>
+                <select id ="right-valute" onchange="convert(this)">
+                    {{#each Valute}}
+                    <option value ="{{Value}}">{{Name}}</option>
+                    {{/each}}
+                </select>
+                <input id="right-text" value="0" placeholder="100" oninput="convert(this)">
+            </div>
+        </div>
+    </form>
+</div>  
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Название</th>
+                <th>Обозначение</th>
+                <th>Курс к рублю</th>
+                <th>Рубль к валюте</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each Valute}}
+            <tr>
+                <td>#</td>
+                <td>{{Name}}</td>
+                <td>{{CharCode}}</td>
+                <td>{{Value}}</td>
+                <td>{{DeValue}}</td>
+            </tr>>    
+            {{/each}}
+        </tbody>
+        
+    </table>
+</div>  
+
+<script>
+   function convert(obj){
+       const leftValute = document.getElementById("left-valute");
+       const rightValute = document.getElementById("right-valute");
+
+       const leftText = document.getElementById("left-text");
+       const rightText = document.getElementById("right-text");
+
+       if (obj == leftValute || obj == leftText){
+           rightText.value = leftText.value * leftValute.value / rightValute.value;
+       } else {
+           leftText.value = rightText.value * rightValute.value / leftValute.value;
+       }
+   }
+</script>
